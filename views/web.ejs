@@ -1,0 +1,35 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js">
+
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        var socket = io("http://localhost:3000");
+        $(document).ready(function () {
+           socket.on("server_send_qc",function(data){
+               var s = "<a href='"+data.link+"'><img src='Ads/"+data.hinh+"' width='300'/></a>";
+           
+              $('#quangcao').html(s);
+            });
+        })
+    </script>
+
+
+</head>
+
+<body>
+    <div>
+        <div id=quangcao></div>
+        <div id="noidung"></div>
+    </div>
+
+</body>
+
+</html>

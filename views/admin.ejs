@@ -1,0 +1,59 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Admin</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js">
+
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        var socket = io("http://localhost:3000");
+
+
+
+
+
+        $(document).ready(function () {
+            $('#dsqc').change(function () {
+                var v = $(this).val();
+                $('#hinhqc').attr("src", "Ads/" + v);
+            });
+
+            $('#btnGui').click(function () {
+                var t = $('#dsqc').val();
+
+                socket.emit("admin_send_qc",t);
+
+            })
+
+        });
+    </script>
+
+
+
+</head>
+
+<body>
+    <select id="dsqc">
+   <option value="">--------</option>    
+   <%  var t=0;
+   mangQC.forEach(function(qc){ %>  
+    <option value="<%=qc.hinh%>" ><%=qc.hinh%></option>    <!--thutu="<%=t%>"-->
+    <%  t++;
+        });  %>
+    </select>
+    <input type="button" id="btnGui" value="Send Ads" />
+
+
+    <div>
+        <img id="hinhqc" src="" height="300" width="300" />
+    </div>
+</body>
+
+</html>
